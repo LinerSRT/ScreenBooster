@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:padding="@dimen/contentPadding"
+    android:background="@drawable/background_round_top"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/baseDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/contentPadding"
+        android:drawableStart="@drawable/info_icon"
+        android:drawablePadding="@dimen/contentPadding"
+        android:gravity="center_vertical"
+        android:text="The standard Lorem Ipsum passage, used since the 1500s"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textSize"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/baseDialogText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lorftware like Aldus P"
+            android:textColor="@color/textSecondaryColor"
+            android:textSize="@dimen/textSecondarySize" />
+
+
+        <ProgressBar
+            android:id="@+id/indeterminateProgress"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/primaryColor" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/baseDialogCustomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:padding="@dimen/contentPadding">
+
+        <TextView
+            android:id="@+id/baseDialogCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/contentPadding"
+            android:padding="@dimen/contentPadding"
+            android:text="Cancel"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/baseDialogDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/contentPadding"
+            android:padding="@dimen/contentPadding"
+            android:text="Done"
+            android:textColor="@color/primarySecondaryColor"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</LinearLayout>

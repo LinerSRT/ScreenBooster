@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:orientation="horizontal">
+
+    <com.liner.screenboster.views.YSTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logTime"
+        android:layout_marginEnd="4dp"
+        android:text="16:27:39"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textSecondarySize"
+        app:ys_type="Medium" />
+
+    <com.liner.screenboster.views.YSTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logType"
+        android:layout_marginEnd="@dimen/contentMargin"
+        android:text="INFO"
+        android:textColor="#2929ff"
+        android:textSize="@dimen/textSize"
+        app:ys_type="Medium" />
+
+
+    <com.liner.screenboster.views.YSTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log will be appended"
+        android:id="@+id/logText"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textSize"
+        app:ys_type="Thin" />
+
+</LinearLayout>

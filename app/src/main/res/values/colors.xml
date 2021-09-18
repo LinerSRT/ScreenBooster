@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="backgroundColor">#11131B</color>
+    <color name="backgroundSecondaryColor">#323542</color>
+    <color name="primaryColor">#304FFE</color>
+    <color name="primarySecondaryColor">#2962FF</color>
+    <color name="textColor">#F4F4F4</color>
+    <color name="textSecondaryColor">#D8D8D8</color>
+    <color name="textDisabledColor">#979797</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#D50000</color>
+    <color name="green">#00D515</color>
+    <color name="blue">#0035D5</color>
+
+
+    <color name="info">#2962FF</color>
+    <color name="warning">#FFD600</color>
+    <color name="done">#00C853</color>
+    <color name="error">#D50000</color>
+</resources>

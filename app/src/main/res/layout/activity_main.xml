@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_round_bottom"
+        android:elevation="16dp"
+        android:orientation="horizontal"
+        android:transitionName="splash_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.liner.screenboster.views.YSTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_baseline_speed_24"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ys_type="RegularItalic" />
+
+
+        <com.liner.screenboster.views.YSTextView
+            android:id="@+id/deviceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Device Name"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ys_type="Medium" />
+
+
+        <com.liner.screenboster.views.YSTextView
+            android:id="@+id/screenSpecification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="1920x1080 @ 60Hz"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textSecondarySize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/deviceName"
+            app:layout_constraintTop_toBottomOf="@+id/deviceName"
+            app:ys_type="Thin" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.bosphere.fadingedgelayout.FadingEdgeLayout
+        android:id="@+id/fading_edge_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:fel_edge="top|bottom"
+        app:fel_size_bottom="16dp"
+        app:fel_size_top="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/screenRefreshRate5"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ScrollView
+            style="@style/ScrollbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_round"
+                    android:padding="@dimen/contentPadding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <com.liner.screenboster.views.YSTextView
+                        android:id="@+id/YSTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_baseline_video_settings_24"
+                        android:drawablePadding="@dimen/contentPadding"
+                        android:gravity="center_vertical"
+                        android:text="Display overclock"
+                        android:textColor="?textColor"
+                        android:textSize="@dimen/textSize"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:ys_type="Light" />
+
+
+                    <com.liner.screenboster.views.YSTextView
+                        android:id="@+id/YSTextView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:gravity="center_vertical"
+                        android:text="Overclocking display may produce bugs and brick your phone! \nMay sure that you have backup'ed DTBO block first!"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/textSecondarySize"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/YSTextView"
+                        app:ys_type="Light" />
+
+                    <com.liner.screenboster.views.YSTextView
+                        android:id="@+id/refreshValueText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:text="60 HZ"
+                        android:textColor="?textColor"
+                        android:textSize="32sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/YSTextView3"
+                        app:ys_type="Medium" />
+
+                    <com.xw.repo.BubbleSeekBar
+                        android:id="@+id/refreshSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:bsb_anim_duration="300"
+                        app:bsb_bubble_color="?primaryColor"
+                        app:bsb_bubble_text_color="?textColor"
+                        app:bsb_hide_bubble="true"
+                        app:bsb_is_float_type="false"
+                        app:bsb_max="120"
+                        app:bsb_min="60"
+                        app:bsb_progress="60"
+                        app:bsb_section_count="3"
+                        app:bsb_section_text_color="@color/textColor"
+                        app:bsb_section_text_position="below_section_mark"
+                        app:bsb_show_section_mark="true"
+                        app:bsb_show_section_text="true"
+                        app:bsb_show_thumb_text="true"
+                        app:bsb_thumb_text_size="18sp"
+                        app:bsb_touch_to_seek="true"
+                        app:bsb_second_track_color="?primaryColor"
+                        app:bsb_section_text_size="@dimen/textSecondarySize"
+                        app:bsb_show_progress_in_float="false"
+                        app:bsb_thumb_radius="8dp"
+                        app:bsb_track_color="?backgroundColor"
+                        app:bsb_track_size="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/refreshValueText" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/updateScreenRefreshRate2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:backgroundTint="@color/done"
+                        android:text="Restore Default"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/applyRefreshRateButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="?colorPrimary"
+                        android:text="Modify"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/background_round"
+                    android:padding="@dimen/contentPadding"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/displayRestoreColorMode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="@color/done"
+                        android:text="Restore Default"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/displayModifyColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="?colorPrimary"
+                        android:text="Modify"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+                    <com.liner.screenboster.views.YSTextView
+                        android:id="@+id/YSTextView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_baseline_auto_fix_high_24"
+                        android:drawablePadding="@dimen/contentPadding"
+                        android:gravity="center_vertical"
+                        android:text="Display color correction "
+                        android:textColor="?textColor"
+                        android:textSize="@dimen/textSize"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:ys_type="Light" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/display_test"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/YSTextView4" />
+
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+                        <com.liner.screenboster.views.YSTextView
+                            android:id="@+id/YSTextView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:text="Saturation"
+                            android:textColor="?textColor"
+                            android:textSize="@dimen/textSize"
+                            app:ys_type="Light" />
+
+                        <com.xw.repo.BubbleSeekBar
+                            android:id="@+id/displaySaturationSeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:bsb_section_text_size="0sp"
+                            app:bsb_anim_duration="300"
+                            app:bsb_bubble_color="?primaryColor"
+                            app:bsb_bubble_text_color="?textColor"
+                            app:bsb_hide_bubble="true"
+                            app:bsb_is_float_type="false"
+                            app:bsb_max="200"
+                            app:bsb_min="0"
+                            app:bsb_progress="100"
+                            app:bsb_second_track_color="?primaryColor"
+                            app:bsb_section_count="15"
+                            app:bsb_section_text_position="bottom_sides"
+                            app:bsb_show_progress_in_float="false"
+                            app:bsb_show_section_mark="false"
+                            app:bsb_show_section_text="false"
+                            app:bsb_thumb_radius="8dp"
+                            app:bsb_track_color="?backgroundColor"
+                            app:bsb_track_size="2dp" />
+
+
+                        <com.liner.screenboster.views.YSTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:text="Red"
+                            android:textColor="?textColor"
+                            android:textSize="@dimen/textSize"
+                            app:ys_type="Light" />
+
+                        <com.xw.repo.BubbleSeekBar
+                            android:id="@+id/displayRedColorSeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:bsb_anim_duration="300"
+                            app:bsb_bubble_color="@color/red"
+                            app:bsb_bubble_text_color="?textColor"
+                            app:bsb_hide_bubble="true"
+                            app:bsb_is_float_type="false"
+                            app:bsb_max="200"
+                            app:bsb_min="0"
+                            app:bsb_progress="100"
+                            app:bsb_second_track_color="@color/red"
+                            app:bsb_section_count="15"
+                            app:bsb_section_text_position="bottom_sides"
+                            app:bsb_section_text_size="0sp"
+                            app:bsb_show_progress_in_float="false"
+                            app:bsb_show_section_mark="false"
+                            app:bsb_show_section_text="false"
+                            app:bsb_thumb_radius="8dp"
+                            app:bsb_track_color="?backgroundColor"
+                            app:bsb_track_size="2dp" />
+
+
+                        <com.liner.screenboster.views.YSTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:text="Green"
+                            android:textColor="?textColor"
+                            android:textSize="@dimen/textSize"
+                            app:ys_type="Light" />
+
+                        <com.xw.repo.BubbleSeekBar
+                            android:id="@+id/displayGreenColorSeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:bsb_anim_duration="300"
+                            app:bsb_bubble_color="@color/green"
+                            app:bsb_bubble_text_color="?textColor"
+                            app:bsb_hide_bubble="true"
+                            app:bsb_is_float_type="false"
+                            app:bsb_max="200"
+                            app:bsb_min="0"
+                            app:bsb_progress="100"
+                            app:bsb_second_track_color="@color/green"
+                            app:bsb_section_text_size="0sp"
+                            app:bsb_section_count="15"
+                            app:bsb_section_text_position="bottom_sides"
+                            app:bsb_show_progress_in_float="false"
+                            app:bsb_show_section_mark="false"
+                            app:bsb_show_section_text="false"
+                            app:bsb_thumb_radius="8dp"
+                            app:bsb_track_color="?backgroundColor"
+                            app:bsb_track_size="2dp" />
+
+
+                        <com.liner.screenboster.views.YSTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:text="Blue"
+                            android:textColor="?textColor"
+                            android:textSize="@dimen/textSize"
+                            app:ys_type="Light" />
+
+                        <com.xw.repo.BubbleSeekBar
+                            android:id="@+id/displayBlueColorSeek"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:bsb_anim_duration="300"
+                            app:bsb_section_text_size="0sp"
+                            app:bsb_bubble_color="@color/blue"
+                            app:bsb_bubble_text_color="?textColor"
+                            app:bsb_hide_bubble="true"
+                            app:bsb_is_float_type="false"
+                            app:bsb_max="200"
+                            app:bsb_min="0"
+                            app:bsb_progress="100"
+                            app:bsb_second_track_color="@color/blue"
+                            app:bsb_section_count="15"
+                            app:bsb_section_text_position="bottom_sides"
+                            app:bsb_show_progress_in_float="false"
+                            app:bsb_show_section_mark="false"
+                            app:bsb_show_section_text="false"
+                            app:bsb_thumb_radius="8dp"
+                            app:bsb_track_color="?backgroundColor"
+                            app:bsb_track_size="2dp" />
+                    </LinearLayout>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </com.bosphere.fadingedgelayout.FadingEdgeLayout>
+
+    <com.liner.screenboster.views.YSTextView
+        android:id="@+id/screenRefreshRate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Programm log"
+        android:textSize="@dimen/textSecondarySize"
+        app:layout_constraintBottom_toTopOf="@+id/logRecycler"
+        app:layout_constraintStart_toStartOf="@+id/logRecycler"
+        app:ys_type="Thin" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        style="@style/ScrollbarStyle"
+        android:background="@drawable/background_round"
+        android:overScrollMode="never"
+        android:padding="@dimen/contentPadding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
