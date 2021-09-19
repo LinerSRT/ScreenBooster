@@ -2,8 +2,8 @@
 <resources>
     <color name="backgroundColor">#11131B</color>
     <color name="backgroundSecondaryColor">#323542</color>
-    <color name="primaryColor">#304FFE</color>
-    <color name="primarySecondaryColor">#2962FF</color>
+    <color name="primaryColor">#00C853</color>
+    <color name="primarySecondaryColor">#079E46</color>
     <color name="textColor">#F4F4F4</color>
     <color name="textSecondaryColor">#D8D8D8</color>
     <color name="textDisabledColor">#979797</color>
@@ -13,6 +13,13 @@
     <color name="green">#00D515</color>
     <color name="blue">#0035D5</color>
 
+
+
+    <color name="primarySecondaryColorAlpha">#2D4537</color>
+    <color name="overclockColor">#BD0D0D</color>
+    <color name="overclockColorAlpha">#452D2D</color>
+    <color name="colorCorrectionColor">#AA16A4</color>
+    <color name="colorCorrectionColorAlpha">#452D44</color>
 
     <color name="info">#2962FF</color>
     <color name="warning">#FFD600</color>

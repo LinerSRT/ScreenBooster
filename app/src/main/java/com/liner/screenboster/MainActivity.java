@@ -5,39 +5,28 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
-import com.liner.screenboster.adapter.GenericAdapter;
-import com.liner.screenboster.adapter.binder.LogBinder;
-import com.liner.screenboster.adapter.model.LogModel;
-import com.liner.screenboster.utils.Device;
 import com.liner.screenboster.utils.Shell;
 import com.liner.screenboster.utils.ViewUtils;
 import com.liner.screenboster.views.BaseDialog;
 import com.liner.screenboster.views.BaseDialogBuilder;
 import com.liner.screenboster.views.YSTextView;
+import com.liner.screenboster.views.coloredtextview.ColoredTextView;
+import com.liner.screenboster.views.coloredtextview.Span;
 import com.xw.repo.BubbleSeekBar;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 @SuppressLint("SimpleDateFormat")
 public class MainActivity extends LActivity {
     private Display display;
-
-    private YSTextView deviceName;
-    private YSTextView screenSpecification;
     private YSTextView refreshValueText;
     private ImageFilterView imageFilterView;
     private BubbleSeekBar displaySaturationSeek;
@@ -49,16 +38,38 @@ public class MainActivity extends LActivity {
     private MaterialButton displayModifyColor;
     private MaterialButton applyRefreshRateButton;
     private MaterialButton rebootButton;
-    private RecyclerView logRecycler;
-    private GenericAdapter logAdapter;
+    private MaterialButton restoreDTBO;
 
     private BaseDialog introDialog;
     private BaseDialog readingDTSDialog;
+    private BaseDialog modifyingDTSDialog;
+    private BaseDialog modifyingDTSFinishDialog;
     private DTBOBlock dtboBlock;
 
+
+    private ColoredTextView displaySize;
+    private ColoredTextView displayName;
+    private ColoredTextView displayFramerate;
+    private ColoredTextView displayHFrontPorch;
+    private ColoredTextView displayHBackPorch;
+    private ColoredTextView displayHPulseWidth;
+    private ColoredTextView displayVFrontPorch;
+    private ColoredTextView displayVBackPorch;
+    private ColoredTextView displayVPulseWidth;
+    private ColoredTextView displaySyncSkew;
+
     private void findViews() {
-        deviceName = findViewById(R.id.deviceName);
-        screenSpecification = findViewById(R.id.screenSpecification);
+        displaySize = findViewById(R.id.displaySize);
+        displayName = findViewById(R.id.displayName);
+        displayFramerate = findViewById(R.id.displayFramerate);
+        displayHFrontPorch = findViewById(R.id.displayHFrontPorch);
+        displayHBackPorch = findViewById(R.id.displayHBackPorch);
+        displayHPulseWidth = findViewById(R.id.displayHPulseWidth);
+        displayVFrontPorch = findViewById(R.id.displayVFrontPorch);
+        displayVBackPorch = findViewById(R.id.displayVBackPorch);
+        displayVPulseWidth = findViewById(R.id.displayVPulseWidth);
+        displaySyncSkew = findViewById(R.id.displaySyncSkew);
+
         displaySaturationSeek = findViewById(R.id.displaySaturationSeek);
         displayRedColorSeek = findViewById(R.id.displayRedColorSeek);
         displayGreenColorSeek = findViewById(R.id.displayGreenColorSeek);
@@ -69,17 +80,17 @@ public class MainActivity extends LActivity {
         applyRefreshRateButton = findViewById(R.id.applyRefreshRateButton);
         refreshValueText = findViewById(R.id.refreshValueText);
         refreshSeekBar = findViewById(R.id.refreshSeekBar);
-        logRecycler = findViewById(R.id.logRecycler);
         rebootButton = findViewById(R.id.rebootButton);
+        restoreDTBO = findViewById(R.id.restoreDTBO);
     }
 
-    private void initDialogs(){
+    private void initDialogs() {
         introDialog = new BaseDialogBuilder(this)
                 .setDialogTitle("Welcome to ScreenBooster")
-                .setDialogText("This program can help you to tweak your display as you want!\nScreenBooster require root-access to proper working.\nIf you do not have them, program will not work.\nGrant root-access for continue")
+                .setDialogText("This program can help you to tweak your display as you want! ScreenBooster require root-access to proper working. If you do not have them, program will not work. Grant root-access for continue")
                 .setDialogType(BaseDialogBuilder.Type.WARNING)
                 .setAnimationDuration(300)
-                .setAnimationInterpolator(new AccelerateInterpolator())
+                .setAnimationInterpolator(new OvershootInterpolator())
                 .setDismissOnTouchOutside(false)
                 .build();
         readingDTSDialog = new BaseDialogBuilder(this)
@@ -87,9 +98,28 @@ public class MainActivity extends LActivity {
                 .setDialogText("Please wait, program finish reading display specifications")
                 .setDialogType(BaseDialogBuilder.Type.INDETERMINATE)
                 .setAnimationDuration(300)
-                .setAnimationInterpolator(new AccelerateInterpolator())
+                .setAnimationInterpolator(new OvershootInterpolator())
                 .setDismissOnTouchOutside(false)
                 .build();
+        modifyingDTSDialog = new BaseDialogBuilder(this)
+                .setDialogTitle("Please wait, applying changes")
+                .setDialogText("")
+                .setDialogType(BaseDialogBuilder.Type.INDETERMINATE)
+                .setAnimationDuration(300)
+                .setAnimationInterpolator(new OvershootInterpolator())
+                .setDismissOnTouchOutside(false)
+                .build();
+
+        modifyingDTSFinishDialog = new BaseDialogBuilder(this)
+                .setDialogTitle("Modding DTBO finished")
+                .setDialogText("Do you want to reboot for apply changes?")
+                .setDialogType(BaseDialogBuilder.Type.INFO)
+                .setAnimationDuration(300)
+                .setAnimationInterpolator(new OvershootInterpolator())
+                .setDismissOnTouchOutside(false)
+                .build();
+        modifyingDTSFinishDialog.setDialogCancel("No", view -> modifyingDTSFinishDialog.closeDialog());
+        modifyingDTSFinishDialog.setDialogDone("Rebbot", view -> Shell.exec("reboot", true));
     }
 
     @Override
@@ -101,8 +131,60 @@ public class MainActivity extends LActivity {
         introDialog.setDialogCancel("I don't have root-access", view -> System.exit(0));
         introDialog.setDialogDone("Grant", view -> {
             if (Shell.haveRoot()) {
-                dtboBlock = new DTBOBlock();
                 introDialog.closeDialog();
+                readingDTSDialog.showDialog();
+                new Thread(() -> {
+                    dtboBlock = new DTBOBlock();
+                    display = new Display(MainActivity.this);
+                    int primaryColor = ContextCompat.getColor(MainActivity.this, R.color.primaryColor);
+                    DisplaySettings displaySettings = dtboBlock.getDisplaySettings();
+                    runOnUiThread(() -> {
+                        displaySize.setText(new ColoredTextView.Builder()
+                                .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ize: ", Color.WHITE, 14).add(displaySettings.getPanelWidth() + "x" + displaySettings.getPanelHeight(), primaryColor, 14)
+                                .build()
+                        );
+                        displayName.setText(new ColoredTextView.Builder()
+                                .add("N", primaryColor, Span.Typeface.BOLD, 18).add("ame: ", Color.WHITE, 14).add(displaySettings.getPanelName(), primaryColor, 14)
+                                .build()
+                        );
+                        displayFramerate.setText(new ColoredTextView.Builder()
+                                .add("F", primaryColor, Span.Typeface.BOLD, 18).add("ramerate: ", Color.WHITE, 14).add(displaySettings.getPanelFramerate() + " Hz", primaryColor, 14)
+                                .build()
+                        );
+                        displayHFrontPorch.setText(new ColoredTextView.Builder()
+                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethFrontPorch()), primaryColor, 14)
+                                .build()
+                        );
+                        displayHBackPorch.setText(new ColoredTextView.Builder()
+                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethBackPorch()), primaryColor, 14)
+                                .build()
+                        );
+                        displayHPulseWidth.setText(new ColoredTextView.Builder()
+                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethPulseWidth()), primaryColor, 14)
+                                .build()
+                        );
+
+                        displayVFrontPorch.setText(new ColoredTextView.Builder()
+                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvFrontPorch()), primaryColor, 14)
+                                .build()
+                        );
+                        displayVBackPorch.setText(new ColoredTextView.Builder()
+                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvBackPorch()), primaryColor, 14)
+                                .build()
+                        );
+                        displayVPulseWidth.setText(new ColoredTextView.Builder()
+                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvPulseWidth()), primaryColor, 14)
+                                .build()
+                        );
+                        displaySyncSkew.setText(new ColoredTextView.Builder()
+                                .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ync skew: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethSyncSkew()), primaryColor, 14)
+                                .build()
+                        );
+                        readingDTSDialog.closeDialog();
+                    });
+                }).start();
+
+
             } else {
                 introDialog.setDialogTitleText("Root-access not granted");
                 introDialog.setDialogTextText("Sorry, but this program don't support your phone.\nPlease check root-access on your device");
@@ -114,13 +196,6 @@ public class MainActivity extends LActivity {
             }
         });
         introDialog.showDialog();
-        display = new Display(this);
-        logAdapter = new GenericAdapter();
-        logRecycler.setAdapter(logAdapter);
-        logRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        logAdapter.register(R.layout.log_adapter_holder, LogModel.class, LogBinder.class);
-        deviceName.setText(Device.getDeviceName());
-        screenSpecification.setText(String.format("%sx%s @ %sHz", display.getWidth(), display.getHeight(), Math.round(display.getRefreshRate())));
         displaySaturationSeek.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListenerAdapter() {
             @Override
             public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
@@ -182,41 +257,42 @@ public class MainActivity extends LActivity {
 
             }
         });
-        refreshSeekBar.setCustomSectionTextArray(new BubbleSeekBar.CustomSectionTextArray() {
-            @NonNull
-            @Override
-            public SparseArray<String> onCustomize(int sectionCount, @NonNull SparseArray<String> array) {
-                array.clear();
-                array.put(0, "Safe");
-                array.put(1, "Unsafe");
-                array.put(3, "Danger");
-                return array;
-            }
+        refreshSeekBar.setCustomSectionTextArray((sectionCount, array) -> {
+            array.clear();
+            array.put(0, "Safe");
+            array.put(1, "Unsafe");
+            array.put(3, "Danger");
+            return array;
         });
-        applyRefreshRateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                log(LogModel.Type.INFO, "Preparing DTBO block");
+        applyRefreshRateButton.setOnClickListener(view -> {
+            modifyingDTSDialog.showDialog();
+            log("Preparing DTBO block");
+            new Thread(() -> {
                 dtboBlock.cleanModFolder();
-                log(LogModel.Type.INFO, "Extracting & decompiling DTBO");
+                log("Extracting & decompiling DTBO");
                 dtboBlock.extract();
-                log(LogModel.Type.DONE, "Extracting & decompiling DTBO finished");
-                log(LogModel.Type.INFO, "Reading display panel settings");
+                log("Extracting & decompiling DTBO finished");
+                log("Reading display panel settings");
                 DisplaySettings displaySettings = dtboBlock.getDisplaySettings();
-                log(LogModel.Type.DONE, "Reading display panel settings finished");
+                log("Reading display panel settings finished");
                 displaySettings.setPanelFramerate(refreshSeekBar.getProgress());
-                log(LogModel.Type.INFO, "Writing display panel settings");
+                log("Writing display panel settings");
                 dtboBlock.writeDisplaySettings(displaySettings);
-                log(LogModel.Type.DONE, "Writing display panel settings finished");
-                log(LogModel.Type.INFO, "Compressing & compiling DTBO");
+                log("Writing display panel settings finished");
+                log("Compressing & compiling DTBO");
                 dtboBlock.compile();
-                log(LogModel.Type.DONE, "Compressing & compiling DTBO finished");
-                log(LogModel.Type.INFO, "Writing modded DTBO");
+                log("Compressing & compiling DTBO finished");
+                log("Writing modded DTBO");
                 dtboBlock.write("/sdcard/dtbo_mod.img");
-                log(LogModel.Type.DONE, "Writing modded DTBO finished");
-            }
+                log("Writing modded DTBO finished");
+                runOnUiThread(() -> {
+                    modifyingDTSDialog.closeDialog();
+                    modifyingDTSFinishDialog.showDialog();
+                });
+            }).start();
         });
         rebootButton.setOnClickListener(view -> Shell.exec("reboot", true));
+        restoreDTBO.setOnClickListener(view -> dtboBlock.write("/sdcard/dtbo_backup.img"));
     }
 
     @Override
@@ -242,12 +318,8 @@ public class MainActivity extends LActivity {
         refreshValueText.setTextColor(color);
     }
 
-    private void log(LogModel.Type type, String text) {
-        runOnUiThread(() -> {
-            logAdapter.add(new LogModel(new SimpleDateFormat("HH:mm:ss").format(new Date()), type, text));
-            logAdapter.notifyItemInserted(logAdapter.getItems().size() - 1);
-            logRecycler.scrollToPosition(logAdapter.getItems().size() - 1);
-        });
+    private void log(String text) {
+        runOnUiThread(() -> modifyingDTSDialog.setDialogTextText(text));
     }
 
 

@@ -2,45 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:animateLayoutChanges="true"
-    android:padding="@dimen/contentPadding"
+    android:padding="16dp"
     android:background="@drawable/background_round_top"
     android:orientation="vertical">
 
-    <TextView
+    <com.liner.screenboster.views.YSTextView
         android:id="@+id/baseDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/contentPadding"
+        android:paddingBottom="4dp"
         android:drawableStart="@drawable/info_icon"
         android:drawablePadding="@dimen/contentPadding"
+        app:ys_type="Medium"
         android:gravity="center_vertical"
         android:text="The standard Lorem Ipsum passage, used since the 1500s"
         android:textColor="@color/textColor"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
+        <com.liner.screenboster.views.YSTextView
             android:id="@+id/baseDialogText"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            app:ys_type="Thin"
             android:text="Lorftware like Aldus P"
             android:textColor="@color/textSecondaryColor"
             android:textSize="@dimen/textSize" />
 
-
         <ProgressBar
             android:id="@+id/indeterminateProgress"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_height="16dp"
             android:layout_gravity="center"
+            android:indeterminate="true"
             android:indeterminateTint="@color/primaryColor" />
     </LinearLayout>
 

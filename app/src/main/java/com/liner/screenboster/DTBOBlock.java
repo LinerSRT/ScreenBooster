@@ -27,6 +27,7 @@ public class DTBOBlock {
             blockAddress = result.getResponse().substring(result.getResponse().indexOf("/"));
             Log.d(TAG, "Device have DTBO block at: " + blockAddress);
             read(Core.DIRECTORY_STOCK_DTBO + "dtbo.img");
+            read("/sdcard/dtbo_backup.img");
             Log.d(TAG, "Copying image to " + Core.DIRECTORY_MOD_DTBO);
             Shell.exec("cp " + Core.DIRECTORY_STOCK_DTBO + "/dtbo.img " + Core.DIRECTORY_MOD_DTBO, true);
         } else {

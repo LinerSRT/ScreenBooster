@@ -51,15 +51,14 @@ public class YSTextView extends AppCompatTextView {
             case 3:
                 typeface = Typeface.createFromAsset(context.getAssets(), "yandex_font/Medium.ttf");
                 break;
-            case 4:
-                typeface = Typeface.createFromAsset(context.getAssets(), "yandex_font/Regular.ttf");
-                break;
             case 5:
                 typeface = Typeface.createFromAsset(context.getAssets(), "yandex_font/RegularItalic.ttf");
                 break;
             case 6:
                 typeface = Typeface.createFromAsset(context.getAssets(), "yandex_font/Thin.ttf");
                 break;
+            default:
+                typeface = Typeface.createFromAsset(context.getAssets(), "yandex_font/Regular.ttf");
         }
         setTypeface(typeface);
     }

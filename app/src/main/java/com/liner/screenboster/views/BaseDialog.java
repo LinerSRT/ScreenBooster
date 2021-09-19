@@ -29,10 +29,10 @@ import java.util.List;
 @SuppressLint("ViewConstructor")
 public class BaseDialog extends BaseBottomSheet {
     private FragmentActivity activity;
-    private TextView dialogTitle;
+    private YSTextView dialogTitle;
     private FrameLayout dialogCustomView;
     private ProgressBar indeterminateProgress;
-    private TextView dialogText;
+    private YSTextView dialogText;
     private TextView dialogCancel;
     private TextView dialogDone;
     private String dialogTitleText;
