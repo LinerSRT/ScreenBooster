@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.util.DisplayMetrics;
 
 import com.liner.screenboster.utils.PM;
-import com.liner.screenboster.utils.ShellUtils;
+import com.liner.screenboster.utils.Shell;
 
 public class Display {
     private final int refreshRate;
@@ -33,7 +33,7 @@ public class Display {
         PM.put("redColor", redColor);
         PM.put("greenColor", greenColor);
         PM.put("blueColor", blueColor);
-        ShellUtils.execCommand("service call SurfaceFlinger 1015 i32 0", true);
+        Shell.exec("service call SurfaceFlinger 1015 i32 0", true);
     }
 
     public void updateColorMatrix(float redColor, float greenColor, float blueColor) {
@@ -43,11 +43,11 @@ public class Display {
         PM.put("redColor", redColor);
         PM.put("greenColor", greenColor);
         PM.put("blueColor", blueColor);
-        ShellUtils.execCommand(String.format("service call SurfaceFlinger 1015 i32 1 f %s f 0 f 0 f 0 f 0 f %s f 0 f 0 f 0 f 0 f %s f 0 f 0 f 0 f 0 f 1", redColor, greenColor, blueColor), true);
+        Shell.exec(String.format("service call SurfaceFlinger 1015 i32 1 f %s f 0 f 0 f 0 f 0 f %s f 0 f 0 f 0 f 0 f %s f 0 f 0 f 0 f 0 f 1", redColor, greenColor, blueColor), true);
     }
 
     public void setSaturation(float saturation){
-        ShellUtils.execCommand("service call SurfaceFlinger 1022 f "+saturation, true);
+        Shell.exec("service call SurfaceFlinger 1022 f "+saturation, true);
     }
 
     public int getHeight() {

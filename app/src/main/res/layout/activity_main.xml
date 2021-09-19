@@ -187,7 +187,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:backgroundTint="@color/done"
-                        android:text="Restore Default"
+                        android:text="Restore"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
 
@@ -199,6 +199,17 @@
                         android:backgroundTint="?colorPrimary"
                         android:text="Modify"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/rebootButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/red"
+                        android:text="Reboot"
+                        app:layout_constraintEnd_toStartOf="@+id/applyRefreshRateButton"
+                        app:layout_constraintHorizontal_bias="0.42"
+                        app:layout_constraintStart_toEndOf="@+id/updateScreenRefreshRate2"
                         app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

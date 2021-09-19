@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.liner.screenboster.utils.ViewUtils;
 
 public abstract class LActivity extends AppCompatActivity {
-    protected static String TAG = "TAGTAG";
+    protected static String TAG = "DTB";
 
     @Override
     protected void onStart() {

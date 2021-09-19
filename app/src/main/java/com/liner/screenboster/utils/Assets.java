@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class Assets {
     public static void copy(Context context, String assetPath, String outPath) {
-        File file = new File(context.getFilesDir(), outPath);
+        File file = new File(outPath);
         try {
             InputStream inputStream = context.getAssets().open(assetPath);
             FileOutputStream outputStream = new FileOutputStream(file);

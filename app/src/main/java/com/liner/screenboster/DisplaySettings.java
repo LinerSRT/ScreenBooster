@@ -4,7 +4,7 @@ import com.liner.screenboster.utils.TextUtils;
 
 import java.io.File;
 
-public class DTSDisplaySettings {
+public class DisplaySettings {
     private final File dtsFile;
     private String panelName;
     private int panelWidth;
@@ -18,7 +18,7 @@ public class DTSDisplaySettings {
     private int vPulseWidth;
     private int panelFramerate;
 
-    public DTSDisplaySettings(File dtsFile, String dtsContent){
+    public DisplaySettings(File dtsFile, String dtsContent){
         this.dtsFile = dtsFile;
         this.panelName = TextUtils.getRegex(dtsContent, "qcom,mdss-dsi-panel-name = \"([a-zA-Z0-9 ]*)\"", 1);
         this.panelWidth = Integer.parseInt(TextUtils.getRegex(dtsContent, "qcom,mdss-dsi-panel-width = <([0-9a-fA-FxX]*)>;", 1).replace("0x", ""), 16);

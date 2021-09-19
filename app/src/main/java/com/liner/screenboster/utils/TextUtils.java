@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.StringWriter;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,10 +26,11 @@ public class TextUtils {
         }
     }
 
-    public static String replace(String regex, int groupID, String content, String replacement) {
-        Matcher matcher = Pattern.compile(regex).matcher(content);
-        if (matcher.find()) {
-            return content.replace(matcher.group(0), matcher.group(0).replace(matcher.group(groupID), replacement));
+    public static String replace(String content, String pattern, int group, String replacement){
+        Matcher matcher = Pattern.compile(pattern).matcher(content);
+        while (matcher.find()){
+            String fullMatch = matcher.group(0);
+            content = content.replaceAll(fullMatch, Objects.requireNonNull(fullMatch).replace(matcher.group(group), replacement));
         }
         return content;
     }
