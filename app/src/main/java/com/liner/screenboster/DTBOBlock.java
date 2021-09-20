@@ -19,6 +19,10 @@ public class DTBOBlock {
     private final String blockAddress;
     private final boolean haveBlock;
 
+    public boolean isHaveBlock() {
+        return haveBlock;
+    }
+
     public DTBOBlock() {
         Log.d(TAG, "Creating instance of DTBO");
         Shell.Result result = Shell.exec("cd /dev/block/by-name;ls -l dtbo", true);

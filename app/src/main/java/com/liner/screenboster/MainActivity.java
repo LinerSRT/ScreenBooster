@@ -5,15 +5,13 @@ import android.graphics.Color;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
-import android.util.SparseArray;
-import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.utils.widget.ImageFilterView;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
+import com.liner.screenboster.utils.PM;
 import com.liner.screenboster.utils.Shell;
 import com.liner.screenboster.utils.ViewUtils;
 import com.liner.screenboster.views.BaseDialog;
@@ -44,6 +42,7 @@ public class MainActivity extends LActivity {
     private BaseDialog readingDTSDialog;
     private BaseDialog modifyingDTSDialog;
     private BaseDialog modifyingDTSFinishDialog;
+    private BaseDialog noDTBOBlockDialog;
     private DTBOBlock dtboBlock;
 
 
@@ -69,7 +68,6 @@ public class MainActivity extends LActivity {
         displayVBackPorch = findViewById(R.id.displayVBackPorch);
         displayVPulseWidth = findViewById(R.id.displayVPulseWidth);
         displaySyncSkew = findViewById(R.id.displaySyncSkew);
-
         displaySaturationSeek = findViewById(R.id.displaySaturationSeek);
         displayRedColorSeek = findViewById(R.id.displayRedColorSeek);
         displayGreenColorSeek = findViewById(R.id.displayGreenColorSeek);
@@ -109,7 +107,6 @@ public class MainActivity extends LActivity {
                 .setAnimationInterpolator(new OvershootInterpolator())
                 .setDismissOnTouchOutside(false)
                 .build();
-
         modifyingDTSFinishDialog = new BaseDialogBuilder(this)
                 .setDialogTitle("Modding DTBO finished")
                 .setDialogText("Do you want to reboot for apply changes?")
@@ -118,8 +115,83 @@ public class MainActivity extends LActivity {
                 .setAnimationInterpolator(new OvershootInterpolator())
                 .setDismissOnTouchOutside(false)
                 .build();
+
+        noDTBOBlockDialog = new BaseDialogBuilder(this)
+                .setDialogTitle("This device not supported")
+                .setDialogText("This device doesn't have external DTBO block, so program can't work properly. Please wait while author add support for internal DTBO feature")
+                .setDialogType(BaseDialogBuilder.Type.ERROR)
+                .setAnimationDuration(300)
+                .setAnimationInterpolator(new OvershootInterpolator())
+                .setDismissOnTouchOutside(false)
+                .build();
+        noDTBOBlockDialog.setDialogDone("Exit", view -> {
+            System.exit(0);
+        });
         modifyingDTSFinishDialog.setDialogCancel("No", view -> modifyingDTSFinishDialog.closeDialog());
-        modifyingDTSFinishDialog.setDialogDone("Rebbot", view -> Shell.exec("reboot", true));
+        modifyingDTSFinishDialog.setDialogDone("Reboot", view -> Shell.exec("reboot", true));
+    }
+
+    private void initializeDTS(){
+        PM.put("intro_show", true);
+        introDialog.closeDialog();
+        readingDTSDialog.showDialog();
+        new Thread(() -> {
+            dtboBlock = new DTBOBlock();
+            if(dtboBlock.isHaveBlock()) {
+                display = new Display(MainActivity.this);
+                int primaryColor = ContextCompat.getColor(MainActivity.this, R.color.primaryColor);
+                DisplaySettings displaySettings = dtboBlock.getDisplaySettings();
+                runOnUiThread(() -> {
+                    displaySize.setText(new ColoredTextView.Builder()
+                            .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ize: ", Color.WHITE, 14).add(displaySettings.getPanelWidth() + "x" + displaySettings.getPanelHeight(), primaryColor, 14)
+                            .build()
+                    );
+                    displayName.setText(new ColoredTextView.Builder()
+                            .add("N", primaryColor, Span.Typeface.BOLD, 18).add("ame: ", Color.WHITE, 14).add(displaySettings.getPanelName(), primaryColor, 14)
+                            .build()
+                    );
+                    displayFramerate.setText(new ColoredTextView.Builder()
+                            .add("F", primaryColor, Span.Typeface.BOLD, 18).add("ramerate: ", Color.WHITE, 14).add(displaySettings.getPanelFramerate() + " Hz", primaryColor, 14)
+                            .build()
+                    );
+                    displayHFrontPorch.setText(new ColoredTextView.Builder()
+                            .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethFrontPorch()), primaryColor, 14)
+                            .build()
+                    );
+                    displayHBackPorch.setText(new ColoredTextView.Builder()
+                            .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethBackPorch()), primaryColor, 14)
+                            .build()
+                    );
+                    displayHPulseWidth.setText(new ColoredTextView.Builder()
+                            .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethPulseWidth()), primaryColor, 14)
+                            .build()
+                    );
+
+                    displayVFrontPorch.setText(new ColoredTextView.Builder()
+                            .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvFrontPorch()), primaryColor, 14)
+                            .build()
+                    );
+                    displayVBackPorch.setText(new ColoredTextView.Builder()
+                            .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvBackPorch()), primaryColor, 14)
+                            .build()
+                    );
+                    displayVPulseWidth.setText(new ColoredTextView.Builder()
+                            .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvPulseWidth()), primaryColor, 14)
+                            .build()
+                    );
+                    displaySyncSkew.setText(new ColoredTextView.Builder()
+                            .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ync skew: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethSyncSkew()), primaryColor, 14)
+                            .build()
+                    );
+                    readingDTSDialog.closeDialog();
+                });
+            } else {
+                runOnUiThread(() -> {
+                    readingDTSDialog.closeDialog();
+                    noDTBOBlockDialog.showDialog();
+                });
+            }
+        }).start();
     }
 
     @Override
@@ -131,60 +203,7 @@ public class MainActivity extends LActivity {
         introDialog.setDialogCancel("I don't have root-access", view -> System.exit(0));
         introDialog.setDialogDone("Grant", view -> {
             if (Shell.haveRoot()) {
-                introDialog.closeDialog();
-                readingDTSDialog.showDialog();
-                new Thread(() -> {
-                    dtboBlock = new DTBOBlock();
-                    display = new Display(MainActivity.this);
-                    int primaryColor = ContextCompat.getColor(MainActivity.this, R.color.primaryColor);
-                    DisplaySettings displaySettings = dtboBlock.getDisplaySettings();
-                    runOnUiThread(() -> {
-                        displaySize.setText(new ColoredTextView.Builder()
-                                .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ize: ", Color.WHITE, 14).add(displaySettings.getPanelWidth() + "x" + displaySettings.getPanelHeight(), primaryColor, 14)
-                                .build()
-                        );
-                        displayName.setText(new ColoredTextView.Builder()
-                                .add("N", primaryColor, Span.Typeface.BOLD, 18).add("ame: ", Color.WHITE, 14).add(displaySettings.getPanelName(), primaryColor, 14)
-                                .build()
-                        );
-                        displayFramerate.setText(new ColoredTextView.Builder()
-                                .add("F", primaryColor, Span.Typeface.BOLD, 18).add("ramerate: ", Color.WHITE, 14).add(displaySettings.getPanelFramerate() + " Hz", primaryColor, 14)
-                                .build()
-                        );
-                        displayHFrontPorch.setText(new ColoredTextView.Builder()
-                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethFrontPorch()), primaryColor, 14)
-                                .build()
-                        );
-                        displayHBackPorch.setText(new ColoredTextView.Builder()
-                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethBackPorch()), primaryColor, 14)
-                                .build()
-                        );
-                        displayHPulseWidth.setText(new ColoredTextView.Builder()
-                                .add("H", primaryColor, Span.Typeface.BOLD, 18).add("orizontal pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethPulseWidth()), primaryColor, 14)
-                                .build()
-                        );
-
-                        displayVFrontPorch.setText(new ColoredTextView.Builder()
-                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical front porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvFrontPorch()), primaryColor, 14)
-                                .build()
-                        );
-                        displayVBackPorch.setText(new ColoredTextView.Builder()
-                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical back porch: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvBackPorch()), primaryColor, 14)
-                                .build()
-                        );
-                        displayVPulseWidth.setText(new ColoredTextView.Builder()
-                                .add("V", primaryColor, Span.Typeface.BOLD, 18).add("ertical pulse width: ", Color.WHITE, 14).add(String.valueOf(displaySettings.getvPulseWidth()), primaryColor, 14)
-                                .build()
-                        );
-                        displaySyncSkew.setText(new ColoredTextView.Builder()
-                                .add("S", primaryColor, Span.Typeface.BOLD, 18).add("ync skew: ", Color.WHITE, 14).add(String.valueOf(displaySettings.gethSyncSkew()), primaryColor, 14)
-                                .build()
-                        );
-                        readingDTSDialog.closeDialog();
-                    });
-                }).start();
-
-
+                initializeDTS();
             } else {
                 introDialog.setDialogTitleText("Root-access not granted");
                 introDialog.setDialogTextText("Sorry, but this program don't support your phone.\nPlease check root-access on your device");
@@ -195,7 +214,11 @@ public class MainActivity extends LActivity {
                 });
             }
         });
-        introDialog.showDialog();
+        if (!(Boolean) PM.get("intro_show", false)) {
+            introDialog.showDialog();
+        } else {
+            initializeDTS();
+        }
         displaySaturationSeek.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListenerAdapter() {
             @Override
             public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
@@ -266,25 +289,25 @@ public class MainActivity extends LActivity {
         });
         applyRefreshRateButton.setOnClickListener(view -> {
             modifyingDTSDialog.showDialog();
-            log("Preparing DTBO block");
+            log("Preparing DTBO block...");
             new Thread(() -> {
                 dtboBlock.cleanModFolder();
-                log("Extracting & decompiling DTBO");
+                log("Extracting & decompiling DTBO...");
                 dtboBlock.extract();
-                log("Extracting & decompiling DTBO finished");
-                log("Reading display panel settings");
+                log("Extracting & decompiling DTBO finished...");
+                log("Reading display panel settings...");
                 DisplaySettings displaySettings = dtboBlock.getDisplaySettings();
-                log("Reading display panel settings finished");
+                log("Reading display panel settings finished...");
                 displaySettings.setPanelFramerate(refreshSeekBar.getProgress());
-                log("Writing display panel settings");
+                log("Writing display panel settings...");
                 dtboBlock.writeDisplaySettings(displaySettings);
-                log("Writing display panel settings finished");
-                log("Compressing & compiling DTBO");
+                log("Writing display panel settings finished...");
+                log("Compressing & compiling DTBO...");
                 dtboBlock.compile();
-                log("Compressing & compiling DTBO finished");
-                log("Writing modded DTBO");
+                log("Compressing & compiling DTBO finished...");
+                log("Writing modded DTBO...");
                 dtboBlock.write("/sdcard/dtbo_mod.img");
-                log("Writing modded DTBO finished");
+                log("Writing modded DTBO finished...");
                 runOnUiThread(() -> {
                     modifyingDTSDialog.closeDialog();
                     modifyingDTSFinishDialog.showDialog();
