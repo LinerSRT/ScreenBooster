@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Screen Booster</string>
+    <string name="applicationHeader">|c=#00C853 f=bold s=18 t=Screen| |c=#FFFFFF f=italic s=12 t=Booster|</string>
+    <string name="displaySpecification">|c=#00C853 f=BOLD s=-1 t=Дисплей ||c=#FFFFFF f=NORMAL s=-1 t=характеристики|</string>
+    <string name="displaySize">|c=#00C853 f=BOLD s=18 t=Р||c=#FFFFFF f=NORMAL s=14 t=азрешение: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayName">|c=#00C853 f=BOLD s=18 t=Н||c=#FFFFFF f=NORMAL s=14 t=азвание: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayFramerate">|c=#00C853 f=BOLD s=18 t=Ч||c=#FFFFFF f=NORMAL s=14 t=астота обновления: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHFPorch">|c=#00C853 f=BOLD s=18 t=Г||c=#FFFFFF f=NORMAL s=14 t=оризонтальный импульс (П): ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHBPorch">|c=#00C853 f=BOLD s=18 t=Г||c=#FFFFFF f=NORMAL s=14 t=оризонтальный импульс (З): ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHPulse">|c=#00C853 f=BOLD s=18 t=Г||c=#FFFFFF f=NORMAL s=14 t=оризонтальная ширина импульса: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVFPorch">|c=#00C853 f=BOLD s=18 t=В||c=#FFFFFF f=NORMAL s=14 t=ертикальный  импульс (П): ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVBPorch">|c=#00C853 f=BOLD s=18 t=В||c=#FFFFFF f=NORMAL s=14 t=ертикальный  импульс (З): ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVPulse">|c=#00C853 f=BOLD s=18 t=В||c=#FFFFFF f=NORMAL s=14 t=ертикальная ширина импульса: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displaySync">|c=#00C853 f=BOLD s=18 t=С||c=#FFFFFF f=NORMAL s=14 t=синхронизация смещения: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayOverclock">|c=#BD0D0D f=BOLD s=-1 t=Дисплей ||c=#FFFFFF f=NORMAL s=-1 t=частота обновления|</string>
+    <string name="_60_hz">60 HZ</string>
+    <string name="restore">Восстановить</string>
+    <string name="modify">Применить</string>
+    <string name="displayColorCorrection">|c=#AA16A4 f=BOLD s=-1 t=Дисплей ||c=#FFFFFF f=NORMAL s=-1 t=коррекция цвета|</string>
+    <string name="saturation">Насыщенность</string>
+    <string name="red">Красный канал</string>
+    <string name="green">Зеленый канал</string>
+    <string name="blue">Синий канал</string>
+    <string name="welcomeDialog">Добро пожаловать в ScreenBooster</string>
+    <string name="welcomeDialogText">Эта программа позволит вам настроить дисплей так как вы хотите! Для работы программы, ей необходимы права ROOT. Если у вас нет прав ROOT, программа не будет работать корректно. Предоставьте доступ к ROOT правам для продолжения</string>
+    <string name="readingDisplay">Получение характеристик дисплея</string>
+    <string name="pleaseWaitWhileReadingDisplay">Пожалуйста подождите, программа считывает характеристики дисплея</string>
+    <string name="waitWhileApplyChanges">Пожалуйста подождите, применение изменений</string>
+    <string name="modifyingDTBOFinished">Установка модифицированного образа DTBO завершена</string>
+    <string name="rebootAsk">Вы хотите перезагрузиться для применения изменений?</string>
+    <string name="deviceNotSupported">Данное устройство не поддерживается</string>
+    <string name="deviceNotSupportDescription">Для работы программы в устройстве должен быть отдельный раздел DTBO! Подождите пока автор программы добавит возможность работы с ядром</string>
+    <string name="exit">Выход</string>
+    <string name="no">Нет</string>
+    <string name="reboot">Перезагрузка</string>
+    <string name="noRootButton">У меня нет ROOT прав</string>
+    <string name="grantRootButton">Предоставить</string>
+    <string name="rootNotGranted">ROOT права не предоставлены</string>
+    <string name="rootRequireDescription">Извините, данное устройство не имеет прав ROOT</string>
+    <string name="safe">Безопасно</string>
+    <string name="unsafe">Нормально</string>
+    <string name="danger">Опасно</string>
+    <string name="prepareDTBO">Подготовка DTBO…</string>
+    <string name="extractDTBO">Декомпиляция DTBO…></string>
+    <string name="extractDTBOFinished">Декомпиляция DTBO завершена</string>
+    <string name="readPanelSettings">Чтение характеристик дисплея…</string>
+    <string name="readPanelSettingsFinished">Чтение характеристик дисплея завершено</string>
+    <string name="writePanelSettings">Запись характеристик дисплея…</string>
+    <string name="writePanelSettingsFinished">Запись характеристик дисплея завершена</string>
+    <string name="compressDTBO">Компиляция DTBO…</string>
+    <string name="compressDTBOFinished">Компиляция DTBO pfdthityf</string>
+    <string name="writingDTBO">Запись DTBO…</string>
+    <string name="writingDTBOFinished">Запись DTBO завершена</string>
+</resources>

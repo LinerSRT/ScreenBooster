@@ -25,7 +25,7 @@
             android:layout_marginBottom="8dp"
             android:drawableStart="@drawable/ic_baseline_speed_24"
             android:gravity="center"
-            android:text="|c=#00C853 f=bold s=18 t=Screen| |c=#FFFFFF f=italic s=12 t=Booster|"
+            android:text="@string/applicationHeader"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             app:drawableTint="?primaryColor"
@@ -77,7 +77,7 @@
                         android:background="@drawable/background_round_top"
                         android:backgroundTint="@color/primarySecondaryColorAlpha"
                         android:padding="@dimen/contentMargin"
-                        android:text="|c=#00C853 f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=specification|"
+                        android:text="@string/displaySpecification"
                         android:textSize="@dimen/textSize"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=S||c=#FFFFFF f=NORMAL s=14 t=ize: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displaySize"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -105,7 +105,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=N||c=#FFFFFF f=NORMAL s=14 t=ame: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayName"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -114,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=F||c=#FFFFFF f=NORMAL s=14 t=ramerate: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayFramerate"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -123,7 +123,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal front porch: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayHFPorch"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -132,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal back porch: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayHBPorch"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -141,7 +141,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal pulse width: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayHPulse"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -150,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical front porch: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayVFPorch"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -159,7 +159,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical back porch: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayVBPorch"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -168,7 +168,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical pulse width: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displayVPulse"
                             android:textSize="22sp" />
 
                         <com.liner.screenboster.views.coloredtextview.ColoredTextView
@@ -178,7 +178,7 @@
                             android:layout_marginStart="@dimen/contentMargin"
                             android:layout_marginEnd="@dimen/contentMargin"
                             android:layout_marginBottom="@dimen/contentMargin"
-                            android:text="|c=#00C853 f=BOLD s=18 t=S||c=#FFFFFF f=NORMAL s=14 t=ync skew: ||c=#00C853 f=NORMAL s=14 t=-|"
+                            android:text="@string/displaySync"
                             android:textSize="22sp" />
 
                     </LinearLayout>
@@ -203,7 +203,7 @@
                         android:background="@drawable/background_round_top"
                         android:backgroundTint="@color/overclockColorAlpha"
                         android:padding="@dimen/contentMargin"
-                        android:text="|c=#BD0D0D f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=overclock|"
+                        android:text="@string/displayOverclock"
                         android:textSize="@dimen/textSize"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -215,7 +215,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:gravity="center"
-                        android:text="60 HZ"
+                        android:text="@string/_60_hz"
                         android:textColor="?textColor"
                         android:textSize="32sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -261,7 +261,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:backgroundTint="@color/done"
-                        android:text="Restore"
+                        android:text="@string/restore"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
 
@@ -272,20 +272,9 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="@color/overclockColor"
-                        android:text="Modify"
+                        android:text="@string/modify"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/rebootButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/overclockColorAlpha"
-                        android:text="Reboot"
-                        app:layout_constraintEnd_toStartOf="@+id/applyRefreshRateButton"
-                        app:layout_constraintHorizontal_bias="0.42"
-                        app:layout_constraintStart_toEndOf="@+id/restoreDTBO"
                         app:layout_constraintTop_toBottomOf="@+id/refreshSeekBar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -307,7 +296,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:backgroundTint="@color/done"
-                        android:text="Restore Default"
+                        android:text="@string/restore"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
@@ -319,7 +308,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
                         android:backgroundTint="@color/colorCorrectionColor"
-                        android:text="Modify"
+                        android:text="@string/modify"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -331,7 +320,7 @@
                         android:background="@drawable/background_round_top"
                         android:backgroundTint="@color/colorCorrectionColorAlpha"
                         android:padding="@dimen/contentMargin"
-                        android:text="|c=#AA16A4 f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=color correction|"
+                        android:text="@string/displayColorCorrection"
                         android:textSize="@dimen/textSize"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -365,7 +354,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:text="Saturation"
+                            android:text="@string/saturation"
                             android:textColor="?textColor"
                             android:textSize="@dimen/textSize"
                             app:ys_type="Light" />
@@ -402,7 +391,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:text="Red"
+                            android:text="@string/red"
                             android:textColor="?textColor"
                             android:textSize="@dimen/textSize"
                             app:ys_type="Light" />
@@ -439,7 +428,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:text="Green"
+                            android:text="@string/green"
                             android:textColor="?textColor"
                             android:textSize="@dimen/textSize"
                             app:ys_type="Light" />
@@ -476,7 +465,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical"
-                            android:text="Blue"
+                            android:text="@string/blue"
                             android:textColor="?textColor"
                             android:textSize="@dimen/textSize"
                             app:ys_type="Light" />

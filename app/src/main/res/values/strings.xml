@@ -1,3 +1,54 @@
 <resources>
     <string name="app_name">Screen Booster</string>
+    <string name="applicationHeader">|c=#00C853 f=bold s=18 t=Screen| |c=#FFFFFF f=italic s=12 t=Booster|</string>
+    <string name="displaySpecification">|c=#00C853 f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=specification|</string>
+    <string name="displaySize">|c=#00C853 f=BOLD s=18 t=S||c=#FFFFFF f=NORMAL s=14 t=ize: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayName">|c=#00C853 f=BOLD s=18 t=N||c=#FFFFFF f=NORMAL s=14 t=ame: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayFramerate">|c=#00C853 f=BOLD s=18 t=F||c=#FFFFFF f=NORMAL s=14 t=ramerate: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHFPorch">|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal front porch: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHBPorch">|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal back porch: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayHPulse">|c=#00C853 f=BOLD s=18 t=H||c=#FFFFFF f=NORMAL s=14 t=orizontal pulse width: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVFPorch">|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical front porch: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVBPorch">|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical back porch: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayVPulse">|c=#00C853 f=BOLD s=18 t=V||c=#FFFFFF f=NORMAL s=14 t=ertical pulse width: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displaySync">|c=#00C853 f=BOLD s=18 t=S||c=#FFFFFF f=NORMAL s=14 t=ync skew: ||c=#00C853 f=NORMAL s=14 t=%s|</string>
+    <string name="displayOverclock">|c=#BD0D0D f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=overclock|</string>
+    <string name="_60_hz">60 HZ</string>
+    <string name="restore">Restore</string>
+    <string name="modify">Modify</string>
+    <string name="displayColorCorrection">|c=#AA16A4 f=BOLD s=-1 t=Display ||c=#FFFFFF f=NORMAL s=-1 t=color correction|</string>
+    <string name="saturation">Saturation</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="welcomeDialog">Welcome to ScreenBooster</string>
+    <string name="welcomeDialogText">This program can help you to tweak your display as you want! ScreenBooster require root-access to proper working. If you do not have them, program will not work. Grant root-access for continue</string>
+    <string name="readingDisplay">Reading display specifications</string>
+    <string name="pleaseWaitWhileReadingDisplay">Please wait, program finish reading display specifications</string>
+    <string name="waitWhileApplyChanges">Please wait, applying changes</string>
+    <string name="modifyingDTBOFinished">Modding DTBO finished</string>
+    <string name="rebootAsk">Do you want to reboot for apply changes?</string>
+    <string name="deviceNotSupported">This device not supported</string>
+    <string name="deviceNotSupportDescription">This device doesn\'t have external DTBO block, so program can\'t work properly. Please wait while author add support for internal DTBO feature</string>
+    <string name="exit">Exit</string>
+    <string name="no">No</string>
+    <string name="reboot">Reboot</string>
+    <string name="noRootButton">I don\'t have root-access</string>
+    <string name="grantRootButton">Grant</string>
+    <string name="rootNotGranted">Root-access not granted</string>
+    <string name="rootRequireDescription">Sorry, but this program don\'t support your phone.\nPlease check root-access on your device</string>
+    <string name="safe">Safe</string>
+    <string name="unsafe">Unsafe</string>
+    <string name="danger">Danger</string>
+    <string name="prepareDTBO">Preparing DTBO block…</string>
+    <string name="extractDTBO">Extracting and decompiling DTBO…</string>
+    <string name="extractDTBOFinished">Extracting and decompiling DTBO finished…</string>
+    <string name="readPanelSettings">Reading display panel settings…</string>
+    <string name="readPanelSettingsFinished">Reading display panel settings finished…</string>
+    <string name="writePanelSettings">Writing display panel settings…</string>
+    <string name="writePanelSettingsFinished">Writing display panel settings finished…</string>
+    <string name="compressDTBO">Compressing and compiling DTBO…</string>
+    <string name="compressDTBOFinished">Compressing and compiling DTBO finished…</string>
+    <string name="writingDTBO">Writing modded DTBO…</string>
+    <string name="writingDTBOFinished">Writing modded DTBO finished…</string>
 </resources>

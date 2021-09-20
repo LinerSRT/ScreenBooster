@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
     android:padding="16dp"
     android:background="@drawable/background_round_top"
@@ -17,7 +18,7 @@
         android:drawablePadding="@dimen/contentPadding"
         app:ys_type="Medium"
         android:gravity="center_vertical"
-        android:text="The standard Lorem Ipsum passage, used since the 1500s"
+        tools:text="The standard Lorem Ipsum passage, used since the 1500s"
         android:textColor="@color/textColor"
         android:textSize="18sp" />
 
@@ -32,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:ys_type="Thin"
-            android:text="Lorftware like Aldus P"
+            tools:text="Lorftware like Aldus P"
             android:textColor="@color/textSecondaryColor"
             android:textSize="@dimen/textSize" />
 
@@ -66,7 +67,7 @@
             android:layout_marginEnd="@dimen/contentPadding"
             android:padding="@dimen/contentPadding"
             android:textSize="@dimen/textSize"
-            android:text="Cancel"
+            tools:text="Cancel"
             android:textColor="@color/textColor"
             android:textStyle="bold" />
 
@@ -77,7 +78,7 @@
             android:layout_marginEnd="@dimen/contentPadding"
             android:textSize="@dimen/textSize"
             android:padding="@dimen/contentPadding"
-            android:text="Done"
+            tools:text="Done"
             android:textColor="@color/primarySecondaryColor"
             android:textStyle="bold" />
 
